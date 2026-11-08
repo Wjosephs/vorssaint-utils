@@ -62,7 +62,10 @@ FAN_HELPER_ID="$APP_BUNDLE_ID.fan-control"
 # Sources/NowPlayingAdapter. Staged under Contents/Frameworks, signed on its own.
 NOW_PLAYING_ADAPTER_ID="$APP_BUNDLE_ID.now-playing"
 NOW_PLAYING_ADAPTER="libVorssaintNowPlaying.dylib"
-TARGET="arm64-apple-macosx14.0"
+# Build for the CPU of the Mac running the script (arm64 or x86_64); set
+# VORSSAINT_ARCH to override, e.g. VORSSAINT_ARCH=x86_64 ./build.sh.
+TARGET_ARCH="${VORSSAINT_ARCH:-$(uname -m)}"
+TARGET="$TARGET_ARCH-apple-macosx14.0"
 ENTITLEMENTS="Resources/Vorssaint.entitlements"
 LEGACY_IDENTITY="Vorssaint Utils Signing"
 
